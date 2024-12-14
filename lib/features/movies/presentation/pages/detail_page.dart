@@ -1,15 +1,34 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/injector/injector_conf.dart';
 import '../../../../core/themes/app_size.dart';
 import '../../../../core/utils/get_poster_image.dart';
 import '../../domain/entities/movie.dart';
+import '../bloc/actor/actor_bloc.dart';
+import '../widgets/loading.dart';
+import '../widgets/profile_card.dart';
 import '../widgets/vote_averange.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   const DetailPage({super.key, required this.movie});
 
   final Movie movie;
+
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  late ActorBloc _actorBloc;
+
+  @override
+  void initState() {
+    _actorBloc = getIt<ActorBloc>();
+    _actorBloc.add(GetActorListEvent(id: widget.movie.id));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +41,7 @@ class DetailPage extends StatelessWidget {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: CachedNetworkImage(
-                imageUrl: getPosterImage(movie.posterPath),
+                imageUrl: getPosterImage(widget.movie.posterPath),
                 fit: BoxFit.cover,
                 width: double.infinity,
               ),
@@ -41,7 +60,7 @@ class DetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    movie.originalTitle,
+                    widget.movie.originalTitle,
                     style: const TextStyle(
                       fontSize: AppSize.s26,
                       fontWeight: FontWeight.bold,
@@ -71,17 +90,41 @@ class DetailPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: AppSize.s10),
-                      VoteAverage(voteAverage: movie.voteAverage),
+                      VoteAverage(voteAverage: widget.movie.voteAverage),
                     ],
                   ),
                   const SizedBox(height: AppSize.s10),
                   Text(
-                    movie.overview,
+                    widget.movie.overview,
                     style: const TextStyle(
                       fontSize: AppSize.s14,
                       color: Colors.grey,
                     ),
                   ),
+                  BlocBuilder<ActorBloc, ActorState>(
+                      bloc: _actorBloc,
+                      builder: (context, state) {
+                        if (state is GetActorListSuccessState) {
+                          final actors = state.actor;
+                          return SizedBox(
+                            height: 200,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: actors.length,
+                              itemBuilder: (context, index) {
+                                final actor = actors[index];
+                                return ProfileCard(
+                                  imageUrl:
+                                      getPosterImage(actor.profilePath ?? ''),
+                                  name: actor.name,
+                                );
+                              },
+                            ),
+                          );
+                        }
+
+                        return const Loading();
+                      }),
                 ],
               ),
             ),

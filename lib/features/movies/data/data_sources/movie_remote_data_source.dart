@@ -1,5 +1,6 @@
 import '../../../../core/api/api_helper.dart';
 import '../../../../core/errors/exceptions.dart';
+import '../../../../core/utils/logger.dart';
 import '../models/actor_model.dart';
 import '../models/movie_model.dart';
 
@@ -53,8 +54,12 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
         method: Method.get,
         url: '/movie/$id/credits',
       );
-      return response['cast'].map((e) => MovieModel.fromJson(e)).toList();
+      return (response['cast'] as List)
+          .map((e) => ActorModel.fromJson(e))
+          .where((element) => element.profilePath != null)
+          .toList();
     } catch (e) {
+      logger.e(e);
       throw ServerException();
     }
   }
