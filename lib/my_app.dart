@@ -6,6 +6,7 @@ import 'core/blocs/theme/theme_bloc.dart';
 import 'core/injector/injector_conf.dart';
 import 'core/themes/app_theme.dart';
 import 'core/routes/app_route_conf.dart';
+import 'features/movies/presentation/bloc/actor/actor_bloc.dart';
 import 'features/movies/presentation/bloc/playing/playing_bloc.dart';
 import 'features/movies/presentation/bloc/rated/rated_bloc.dart';
 
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
                   ..add(
                     GetPlayingListEvent(),
                   )),
+            BlocProvider(create: (_) => getIt<ActorBloc>()),
           ],
           child: BlocBuilder<ThemeBloc, ThemeState>(
             builder: (_, state) {
