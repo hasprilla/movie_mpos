@@ -54,7 +54,7 @@ Before running the project, make sure you have the following installed:
 2. **Navigate to the project directory**:
 
     ```bash
-    cd project-name
+    cd movie_mpos
     ```
 
 3. **Install dependencies**:
