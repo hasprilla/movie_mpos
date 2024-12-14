@@ -93,7 +93,4 @@ Before running the project, make sure you have the following installed:
     flutter build ios
     ```
 
-## Folder Structure
-
-Here is a quick overview of the project's folder structure:
 
