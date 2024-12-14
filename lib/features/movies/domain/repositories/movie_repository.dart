@@ -6,4 +6,5 @@ import '../entities/movie.dart';
 abstract interface class MovieRepository {
   Future<Either<Failure, List<Movie>>> getTopRated();
   Future<Either<Failure, List<Movie>>> getNoewPlaying();
+  
 }

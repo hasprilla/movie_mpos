@@ -2,6 +2,7 @@ import '../../domain/entities/movie.dart';
 
 class MovieModel extends Movie {
   const MovieModel({
+    required super.id,
     required super.originalTitle,
     required super.posterPath,
     required super.voteAverage,
@@ -10,6 +11,7 @@ class MovieModel extends Movie {
 
   factory MovieModel.fromJson(Map<String, dynamic> json) {
     return MovieModel(
+      id: json['id'],
       originalTitle: json['original_title'],
       posterPath: json['poster_path'],
       voteAverage: json['vote_average'].toDouble(),
