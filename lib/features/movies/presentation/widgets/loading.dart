@@ -10,7 +10,9 @@ class Loading extends StatelessWidget {
     return const Center(
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 20.0),
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          strokeWidth: 1,
+        ),
       ),
     );
   }

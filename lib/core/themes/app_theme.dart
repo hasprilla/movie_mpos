@@ -12,7 +12,7 @@ class AppTheme {
     return ThemeData(
       brightness: isDark ? Brightness.dark : Brightness.light,
       primaryColor: AppColor.blue,
-      canvasColor: AppColor.navy,
+      canvasColor: isDark ? AppColor.black : AppColor.navy,
       appBarTheme: AppBarTheme(
         backgroundColor: AppColor.blue,
         centerTitle: true,

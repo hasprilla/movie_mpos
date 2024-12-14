@@ -2,15 +2,12 @@ part of 'playing_bloc.dart';
 
 abstract class PlayingState extends Equatable {
   const PlayingState();
-  
+
   @override
   List<Object> get props => [];
 }
 
- class PlayingInitial extends PlayingState {}
-
-
-
+class PlayingInitial extends PlayingState {}
 
 class GetPlayingListLoadingState extends PlayingState {}
 

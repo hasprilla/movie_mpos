@@ -6,17 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class MovieList<T extends BlocBase<S>, S> extends StatelessWidget {
   final T bloc;
   final List Function(S state) getMovies;
-  final String Function(dynamic movie) getTitle;
-  final String Function(dynamic movie) getImagePath;
-  final double Function(dynamic movie) getRating;
 
   const MovieList({
     super.key,
     required this.bloc,
     required this.getMovies,
-    required this.getTitle,
-    required this.getImagePath,
-    required this.getRating,
   });
 
   @override
@@ -29,15 +23,12 @@ class MovieList<T extends BlocBase<S>, S> extends StatelessWidget {
           return SizedBox(
             height: 250,
             child: ListView.builder(
+              padding: const EdgeInsets.only(left: 20),
               scrollDirection: Axis.horizontal,
               itemCount: movies.length,
               itemBuilder: (context, index) {
                 final movie = movies[index];
-                return MovieItem(
-                  title: getTitle(movie),
-                  imagePath: getImagePath(movie),
-                  rating: getRating(movie),
-                );
+                return MovieItem(movie: movie);
               },
             ),
           );

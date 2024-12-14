@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/utils/get_poster_image.dart';
-
 import '../bloc/playing/playing_bloc.dart';
 import '../bloc/rated/rated_bloc.dart';
 import '../widgets/category_section.dart';
@@ -23,7 +21,7 @@ class MoviePage extends StatelessWidget {
           children: [
             const CustomHeader(),
             Positioned(
-              top: size.height * 0.35,
+              top: size.height * 0.36,
               left: 0,
               right: 0,
               child: Container(
@@ -41,6 +39,7 @@ class MoviePage extends StatelessWidget {
                       child: ListView(
                         padding: EdgeInsets.zero,
                         children: [
+                          SizedBox(height: size.height * 0.012),
                           const CategorySection(title: 'RECOMMENDED FOR YOU'),
                           MovieList<PlayingBloc, PlayingState>(
                             bloc: BlocProvider.of<PlayingBloc>(context),
@@ -48,10 +47,6 @@ class MoviePage extends StatelessWidget {
                                 state is GetPlayingListSuccessState
                                     ? state.playing
                                     : [],
-                            getTitle: (movie) => movie.originalTitle,
-                            getImagePath: (movie) =>
-                                getPosterImage(movie.posterPath),
-                            getRating: (movie) => movie.voteAverage,
                           ),
                           const CategorySection(title: 'TOP RATED'),
                           MovieList<RatedBloc, RatedState>(
@@ -60,10 +55,6 @@ class MoviePage extends StatelessWidget {
                                 state is GetTopRatedListSuccessState
                                     ? state.rated
                                     : [],
-                            getTitle: (movie) => movie.originalTitle,
-                            getImagePath: (movie) =>
-                                getPosterImage(movie.posterPath),
-                            getRating: (movie) => movie.voteAverage,
                           ),
                           SizedBox(height: size.height * 0.5),
                         ],
@@ -76,7 +67,6 @@ class MoviePage extends StatelessWidget {
           ],
         ),
       ),
-      // ),
     );
   }
 }

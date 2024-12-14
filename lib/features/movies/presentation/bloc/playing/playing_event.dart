@@ -7,4 +7,4 @@ abstract class PlayingEvent extends Equatable {
   List<Object> get props => [];
 }
 
-  class GetPlayingListEvent extends PlayingEvent {}
+class GetPlayingListEvent extends PlayingEvent {}

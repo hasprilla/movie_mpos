@@ -42,35 +42,38 @@ class CustomHeader extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 10),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0)
+                .copyWith(top: 7, bottom: 10),
             child: GestureDetector(
               onTap: () => showSearch(
                 context: context,
                 delegate: MovieSearchDelegate(),
               ),
               child: Container(
+                height:
+                    45, // Aumenta la altura para que el botón sea más grande
+                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(22),
                 ),
-                height: 30,
-                width: double.infinity,
                 child: const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(width: 12),
+                    SizedBox(width: 16), // Aumenta el espacio inicial
                     Icon(
                       Icons.search,
                       color: Colors.white,
-                      // size: 20,
                     ),
-                    SizedBox(width: 7),
+                    SizedBox(
+                        width:
+                            10), // Aumenta el espacio entre el ícono y el texto
                     Text(
                       'Search',
                       style: TextStyle(
                         color: Colors.white,
+                        fontSize: 16, // Incrementa el tamaño de la fuente
                       ),
                     ),
                   ],
