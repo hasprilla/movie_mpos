@@ -1,6 +1,5 @@
 import '../../../../core/api/api_helper.dart';
 import '../../../../core/errors/exceptions.dart';
-import '../../../../core/utils/logger.dart';
 import '../models/actor_model.dart';
 import '../models/movie_model.dart';
 
@@ -59,7 +58,6 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
           .where((element) => element.profilePath != null)
           .toList();
     } catch (e) {
-      logger.e(e);
       throw ServerException();
     }
   }

@@ -16,4 +16,13 @@ class ActorModel extends Actor {
       character: json['character'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'profile_path': profilePath,
+      'character': character,
+    };
+  }
 }

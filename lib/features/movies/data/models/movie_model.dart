@@ -18,4 +18,14 @@ class MovieModel extends Movie {
       overview: json['overview'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'original_title': originalTitle,
+      'poster_path': posterPath,
+      'vote_average': voteAverage,
+      'overview': overview,
+    };
+  }
 }

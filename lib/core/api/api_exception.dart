@@ -3,11 +3,6 @@ class ApiException implements Exception {
   final String prefix;
 
   ApiException([this.message = '', this.prefix = '']);
-
-  @override
-  String toString() {
-    return '$prefix$message';
-  }
 }
 
 class FetchDataException extends ApiException {
@@ -38,8 +33,4 @@ class InternalServerException extends ApiException {
 class UnprocessableContentException extends ApiException {
   UnprocessableContentException(String message)
       : super(message, 'Unprocessable Content: ');
-}
-
-class InvalidInputException extends ApiException {
-  InvalidInputException(String message) : super(message, 'Invalid Input: ');
 }

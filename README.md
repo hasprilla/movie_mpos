@@ -3,11 +3,12 @@
 A brief description of your project and its features.
 
 ### Image 1
+
 ![Project Screenshot](/screenshot/1.jpeg)
 
 ### Image 2
-![UI Design](/screenshot/2.jpeg)
 
+![UI Design](/screenshot/2.jpeg)
 
 ## Dependencies
 
@@ -35,9 +36,9 @@ Before running the project, make sure you have the following installed:
 
 - **Flutter**: Ensure that Flutter is installed and configured on your machine. You can check this by running:
 
-    ```bash
-    flutter doctor
-    ```
+  ```bash
+  flutter doctor
+  ```
 
 - **Dart**: Dart comes pre-installed with Flutter, so no separate installation is needed.
 
@@ -47,50 +48,108 @@ Before running the project, make sure you have the following installed:
 
 1. **Clone the repository**:
 
-    ```bash
-    git clone https://github.com/hasprilla/movie_mpos.git
-    ```
+   ```bash
+   git clone https://github.com/hasprilla/movie_mpos.git
+   ```
 
 2. **Navigate to the project directory**:
 
-    ```bash
-    cd movie_mpos
-    ```
+   ```bash
+   cd movie_mpos
+   ```
 
 3. **Install dependencies**:
 
-    Run the following command to install the required dependencies listed in `pubspec.yaml`:
+   Run the following command to install the required dependencies listed in `pubspec.yaml`:
 
-    ```bash
-    flutter pub get
-    ```
+   ```bash
+   flutter pub get
+   ```
 
 4. **Run the application**:
 
-    Connect your device or start an emulator, and run the following command to start the app:
+   Connect your device or start an emulator, and run the following command to start the app:
 
-    ```bash
-    flutter run
-    ```
+   ```bash
+   flutter run
+   ```
 
-    If you have multiple devices connected, use the following command to specify a device:
+   If you have multiple devices connected, use the following command to specify a device:
 
-    ```bash
-    flutter run -d <device_id>
-    ```
+   ```bash
+   flutter run -d <device_id>
+   ```
 
 5. **Build for release (Optional)**:
 
-    To build the app for release (Android or iOS), run:
+   To build the app for release (Android or iOS), run:
 
-    For Android:
-    ```bash
-    flutter build apk
-    ```
+   For Android:
 
-    For iOS:
-    ```bash
-    flutter build ios
-    ```
+   ```bash
+   flutter build apk
+   ```
 
+   For iOS:
 
+   ```bash
+   flutter build ios
+   ```
+
+## Running Tests and Generating Coverage Report
+
+### What is a Coverage Report?
+
+A coverage report helps measure the extent to which the codebase is tested by unit tests. It provides insights into which parts of the code are covered by tests and highlights untested sections. This is useful for maintaining high-quality code and ensuring robust testing.
+
+### Steps to Run Tests and Generate the Report
+
+1. **Run tests with coverage**:
+
+   Execute the following command to run all tests in the project and generate a coverage report:
+
+   ```bash
+   flutter test --coverage
+   ```
+
+   This will create a `coverage` folder in your project directory containing a `lcov.info` file, which holds the coverage data.
+
+2. **Generate an HTML coverage report**:
+
+   To visualize the coverage data, you can convert the `lcov.info` file into an HTML report. This requires the `lcov` tool.
+
+   - **Install lcov**:
+
+     For macOS:
+
+     ```bash
+     brew install lcov
+     ```
+
+     For Linux:
+
+     ```bash
+     sudo apt-get install lcov
+     ```
+
+   - **Generate the HTML report**:
+
+     Run the following command to create the HTML report in the `coverage/html` directory:
+
+     ```bash
+     genhtml coverage/lcov.info -o coverage/html
+     ```
+
+3. **Open the coverage report**:
+
+   Use this command to open the HTML report in your default web browser:
+
+   ```bash
+   open coverage/html/index.html
+   ```
+
+### Benefits of a Coverage Report
+
+- **Identify untested code**: Helps locate parts of the code that lack test coverage.
+- **Improve test quality**: Encourages writing tests for uncovered code, increasing overall code reliability.
+- **Maintainability**: Ensures that new changes or features are properly tested.

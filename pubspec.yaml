@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   bloc: ^8.1.4
+  build_runner: ^2.4.13
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
@@ -30,6 +31,7 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
+  mockito: ^5.4.4
 
 flutter:
   uses-material-design: true

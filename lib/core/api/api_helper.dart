@@ -33,15 +33,15 @@ class ApiHelper {
           break;
       }
 
-      return _returnResponse(response);
+      return returnResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
     } on DioException catch (e) {
-      return _returnResponse(e.response!);
+      return returnResponse(e.response!);
     }
   }
 
-  Map<String, dynamic> _returnResponse(Response response) {
+  Map<String, dynamic> returnResponse(Response response) {
     switch (response.statusCode) {
       case 200:
         return response.data;
